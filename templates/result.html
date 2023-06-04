@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <style>
+        .cell {
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            border: 1px solid black;
+            background-color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Result</h1>
+    <h2>Click on the cells to toggle their color:</h2>
+
+    {% for row in range(arr_rows) %}
+        {% for col in range(arr_cols) %}
+            <div class="cell" onclick="toggleCellColor(this)"></div>
+        {% endfor %}
+        <br>
+    {% endfor %}
+
+    <script>
+        function toggleCellColor(cell) {
+            if (cell.style.backgroundColor === 'white') {
+                cell.style.backgroundColor = 'black';
+            } else {
+                cell.style.backgroundColor = 'white';
+            }
+        }
+    </script>
+</body>
+</html>
