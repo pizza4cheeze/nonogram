@@ -59,9 +59,6 @@
             border-bottom-width: 2px;
             border-bottom-style: solid;
         }
-        .cell-black {
-            background-color: black;
-        }
 
 
     </style>
@@ -69,35 +66,35 @@
 <body>
     <table>
         {% for i in range(max_col_block_size) %}
-            <tr>
-                {% for j in range(max_row_block_size) %}
-                    <td class="{{ 'cell-border-top-2' if i==0 }} {{ 'cell-border-bottom-2' if i==max_col_block_size-1 }} {{ 'cell-border-left-2' if j==0 }}  {{ 'cell-border-right-2' if j==max_row_block_size-1 }}">
-                    </td>
-                {% endfor %}
-                {% for j in range(width) %}
-                    <td class="{{ 'cell-border-top-2' if i==0  else 'cell-border-top' }} {{ 'cell-border-right-2' if j==width-1 or j%5==4 else 'cell-border-right' }} {{ 'cell-border-bottom-2' if i==max_col_block_size-1 }} ">
-                        {{ colunms[j][i] if colunms[j][i] }}
-                    </td>
-                {% endfor %}
-            </tr>
+        <tr>
+            {% for j in range(max_row_block_size) %}
+                <td class="{{ 'cell-border-top-2' if i==0 }} {{ 'cell-border-bottom-2' if i==max_col_block_size-1 }} {{ 'cell-border-left-2' if j==0 }}  {{ 'cell-border-right-2' if j==max_row_block_size-1 }}">
+                </td>
+            {% endfor %}
+            {% for j in range(width) %}
+                <td class="{{ 'cell-border-top-2' if i==0  else 'cell-border-top' }} {{ 'cell-border-right-2' if j==width-1 or j%5==4 else 'cell-border-right' }} {{ 'cell-border-bottom-2' if i==max_col_block_size-1 }} ">
+                    {{ colunms[j][i] if colunms[j][i] }}
+                </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
         {% for i in range(height) %}
             <tr>
                 {% for j in range(max_row_block_size) %}
-                    <td class="{{ 'cell-border-bottom-2' if i==height-1 or i%5==4 else 'cell-border-bottom' }} {{ 'cell-border-left-2' if j==0 else 'cell-border-left' }} {{ 'cell-border-right-2' if j==max_row_block_size-1 }}">
-                        {{ rows[i][j] if rows[i][j] }}
-                    </td>
+                <td class="{{ 'cell-border-bottom-2' if i==height-1 or i%5==4 else 'cell-border-bottom' }} {{ 'cell-border-left-2' if j==0 else 'cell-border-left' }} {{ 'cell-border-right-2' if j==max_row_block_size-1 }}">
+                    {{ rows[i][j] if rows[i][j] }}
+                </td>
                 {% endfor %}
                 {% for j in range(width) %}
-                    <td class="{{ 'cell-border-bottom-2' if i==height-1 or i%5==4 else 'cell-border-bottom' }} {{ 'cell-border-right-2' if j==width-1 or j%5==4 else 'cell-border-right' }} {% if input_array[i][j] == 1 %}cell-black{% endif %}">
+                    <td class="{{ 'cell-border-bottom-2' if i==height-1 or i%5==4 else 'cell-border-bottom' }} {{ 'cell-border-right-2' if j==width-1 or j%5==4 else 'cell-border-right' }}">
                     </td>
                 {% endfor %}
             </tr>
         {% endfor %}
 
     </table>
-<!--    <form action="/" method="POST" enctype="multipart/form-data">-->
-<!--        <input type="submit" value="Загрузить новый кроссворд">-->
-<!--    </form>-->
+    <form action="/result" method="POST" enctype="multipart/form-data">
+        <input type="submit" value="Результат">
+    </form>
 </body>
 </html>
